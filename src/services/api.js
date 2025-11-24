@@ -1,9 +1,17 @@
-const API_URL = 'http://34.175.222.176:7863'
+// API URL from environment variable, fallback to default
+const API_URL = import.meta.env.VITE_API_URL || 'http://34.175.222.176:7863'
 
 /**
  * Market Creation API Service
  */
 export const api = {
+  /**
+   * Get current API URL (for debugging)
+   */
+  getApiUrl() {
+    return API_URL
+  },
+
   /**
    * Create a new session
    * @param {string} sessionId - Unique session identifier
