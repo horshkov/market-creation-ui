@@ -1,5 +1,8 @@
-// API URL from environment variable, fallback to default
-const API_URL = import.meta.env.VITE_API_URL || 'http://34.175.222.176:7863'
+// In production, use relative URLs (proxy handles forwarding)
+// In development, use the direct API URL
+const API_URL = import.meta.env.DEV
+  ? (import.meta.env.VITE_API_URL || 'http://34.175.222.176:7863')
+  : ''  // Empty = relative URLs, goes through our proxy
 
 /**
  * Market Creation API Service
@@ -9,7 +12,7 @@ export const api = {
    * Get current API URL (for debugging)
    */
   getApiUrl() {
-    return API_URL
+    return API_URL || '(using proxy)'
   },
 
   /**
